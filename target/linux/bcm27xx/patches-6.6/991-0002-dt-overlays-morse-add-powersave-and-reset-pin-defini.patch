@@ -14,7 +14,7 @@ new file mode 100644
 index 000000000..f56a24083
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/morse-ps-overlay.dts
-@@ -0,0 +1,48 @@
+@@ -0,0 +1,58 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -62,6 +62,16 @@ index 000000000..f56a24083
 +			pinctrl-0 = <&gpio_mm_ps &gpio_mm_reset &gpio_mm_jtag>;
 +		};
 +	};
++
++       fragment@2 {
++               target = <&gpio>;
++               __overlay__ {
++                       gpio-line-names =
++                               "", "", "", "", "", "", "", "", /* 0-7   */
++                               "", "", "", "", "", "", "", "", /* 8-15  */
++                               "", "MM_RESET";                 /* 16-17 */
++               };
++       };
 +};
 \ No newline at end of file
 --

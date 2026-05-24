@@ -6,7 +6,7 @@ Subject: [PATCH] bcm27xx: (APP-3660) Create separate SPI device tree overlay
 
 --- /dev/null
 +++ b/arch/arm/boot/dts/overlays/mm610x-spi-overlay.dts
-@@ -0,0 +1,53 @@
+@@ -0,0 +1,55 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -16,6 +16,8 @@ Subject: [PATCH] bcm27xx: (APP-3660) Create separate SPI device tree overlay
 +	fragment@0 {
 +		target = <&spi0>;
 +		frag0: __overlay__ {
++                       /delete-property/ dmas;
++                       /delete-property/ dma-names;
 +			pinctrl-0 = <&spi0_pins &spi0_cs_pins>;
 +			cs-gpios = <&gpio 8 1>;
 +			#address-cells = <1>;
@@ -29,7 +31,7 @@ Subject: [PATCH] bcm27xx: (APP-3660) Create separate SPI device tree overlay
 +				power-gpios = <&gpio 3 0>,
 +				              <&gpio 7 0>;
 +				spi-irq-gpios = <&gpio 5 0>;
-+				spi-max-frequency = <50000000>;
++				spi-max-frequency = <10000000>;
 +				status = "okay";
 +			};
 +
